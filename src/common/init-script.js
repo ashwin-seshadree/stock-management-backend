@@ -1,5 +1,5 @@
 const database = require('../config/database');
-const MasterUserRole = require('../models/MasterUserRoles');
+require('../models/MasterUserRoles');
 
 (async () => {
     try {

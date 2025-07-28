@@ -6,7 +6,6 @@ module.exports = {
     async createUser(req, res) {
         try {
             let userData = req.body;
-            //hashing the password before saving
             userData.password = await utils.hashPassword(userData.password);
             const user = await userService.createUser(userData);
             if (user) {

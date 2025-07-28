@@ -17,7 +17,7 @@ const UserRequestValidator = {
             role_id: joi.number().valid(1, 2).required(),
         })
 
-        const { error } = await addUserSchema.validate(req.body);
+        const { error } = addUserSchema.validate(req.body);
         if (error) {
             return res.status(400).json({
                 status: 'error',
@@ -28,4 +28,28 @@ const UserRequestValidator = {
     }
 }
 
-module.exports = { UserRequestValidator };
+const AuthRequestValidator = {
+    validateLoginUser: async (req, res, next) => {
+        if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
+            return res.status(400).json({
+                message: "Invalid request body. Expected an object."
+            });
+        }
+
+        const loginUserSchema = joi.object({
+            email_id: joi.string().email().required(),
+            password: joi.string().min(8).max(50).required(),
+        })
+
+        const { error } = loginUserSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 'error',
+                message: error.details[0].message,
+            });
+        }
+        next();
+    }
+}
+
+module.exports = { UserRequestValidator, AuthRequestValidator };
