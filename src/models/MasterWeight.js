@@ -2,7 +2,7 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const Weight = sequelize.define('Weight', {
+const MasterWeightChart = sequelize.define('MasterWeightChart', {
     id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
@@ -36,9 +36,9 @@ const Weight = sequelize.define('Weight', {
     timestamps: false,
 });
 
-Weight.prototype.toJSON = function () {
+MasterWeightChart.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     return values;
 }
 
-module.exports = Weight;
+module.exports = MasterWeightChart;

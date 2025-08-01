@@ -2,7 +2,7 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const Product = sequelize.define('Product', {
+const MasterProducts = sequelize.define('MasterProducts', {
     id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
@@ -36,9 +36,9 @@ const Product = sequelize.define('Product', {
     timestamps: false,
 });
 
-Product.prototype.toJSON = function () {
+MasterProducts.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     return values;
 }
 
-module.exports = Product;
+module.exports = MasterProducts;
