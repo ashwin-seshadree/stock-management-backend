@@ -52,4 +52,52 @@ const AuthRequestValidator = {
     }
 }
 
-module.exports = { UserRequestValidator, AuthRequestValidator };
+const ProductRequestValidator = {
+    validateCreateProduct: async (req, res, next) => {
+        if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
+            return res.status(400).json({
+                message: "Invalid request body. Expected an object."
+            });
+        }
+
+        const addProductSchema = joi.object({
+            product_name: joi.string().min(1).max(100).required(),
+            description: joi.string().max(500).optional(),
+        });
+
+        const { error } = addProductSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 'error',
+                message: error.details[0].message,
+            });
+        }
+        next();
+    }
+}
+
+const WeightRequestValidator = {
+    validateAddWeight: async (req, res, next) => {
+        if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
+            return res.status(400).json({
+                message: "Invalid request body. Expected an object."
+            });
+        }
+
+        const addWeightSchema = joi.object({
+            weight: joi.string().min(1).max(100).required(),
+            description: joi.string().max(500).optional(),
+        });
+
+        const { error } = addWeightSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 'error',
+                message: error.details[0].message,
+            });
+        }
+        next();
+    }
+}
+
+module.exports = { UserRequestValidator, AuthRequestValidator, ProductRequestValidator, WeightRequestValidator };

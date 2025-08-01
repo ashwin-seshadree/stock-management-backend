@@ -18,9 +18,9 @@ module.exports = {
     })
 
     await queryInterface.bulkInsert(tables.master_user_roles, [{
-      role_name: 'admin',
+      role_name: 'Super Admin',
     }, {
-      role_name: 'user',
+      role_name: 'User',
     }]);
   },
 

@@ -15,11 +15,4 @@ const MasterUserRoles = sequelize.define('MasterUserRoles', {
 }, {
     tableName: tables.master_user_roles,
 });
-
-MasterUserRoles.afterSync(async () => {
-    await MasterUserRoles.bulkCreate([
-        { role_name: 'Super Admin' },
-        { role_name: 'User' }])
-})
-
 module.exports = MasterUserRoles;

@@ -4,3 +4,6 @@
 
 #### run to run the migration
 `npx sequelize-cli db:migrate --env development`
+
+#### run to undo the migration
+`npx sequelize-cli db:migrate:undo --env development`
