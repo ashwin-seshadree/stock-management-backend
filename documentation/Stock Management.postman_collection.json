@@ -1,0 +1,849 @@
+{
+	"info": {
+		"_postman_id": "a9b48017-0dec-4b33-bb1a-14633011707f",
+		"name": "Stock Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32274547",
+		"_collection_link": "https://ea-tech.postman.co/workspace/EA-Tech-Workspace~9b6111f0-d711-4c17-868f-0296ec4f62c5/collection/32274547-a9b48017-0dec-4b33-bb1a-14633011707f?action=share&source=collection_link&creator=32274547"
+	},
+	"item": [
+		{
+			"name": "Weight",
+			"item": [
+				{
+					"name": "Add Weight",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"weight\": \"250g\",\r\n    \"description\": \"250 Grams, 0.25 Kilogram\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/weight",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"weight"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"weight\": \"250g\",\r\n    \"description\": \"250 Grams, 0.25 Kilogram\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/weight",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"weight"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "228"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e4-aamK1OOoNiEyjEwwiZ0TdVbb4fk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Aug 2025 06:42:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Weight added successfully\",\n    \"data\": {\n        \"is_active\": true,\n        \"created_at\": \"2025-08-01T06:42:36.441Z\",\n        \"updated_at\": \"2025-08-01T06:42:36.441Z\",\n        \"id\": 1,\n        \"weight\": \"250g\",\n        \"description\": \"250 Grams, 0.25 Kilogram\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Add Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_name\": \"Chips\",\r\n    \"description\": \"Taste the authentic flavour of kerala\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/product",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_name\": \"Mixture\",\r\n    \"description\": \"A blend of beautifully crafted peanut, south indian masala, cashew etc.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/product",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "287"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11f-/Bb99+pgVRGRFPyCZC5JCEvy/88\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Aug 2025 06:46:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Product created successfully\",\n    \"data\": {\n        \"is_active\": true,\n        \"created_at\": \"2025-08-01T06:46:46.926Z\",\n        \"updated_at\": \"2025-08-01T06:46:46.926Z\",\n        \"id\": 1,\n        \"product_name\": \"Mixture\",\n        \"description\": \"A blend of beautifully crafted peanut, south indian masala, cashew etc.\"\n    }\n}"
+						},
+						{
+							"name": "already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_name\": \"Mixture\",\r\n    \"description\": \"A blend of beautifully crafted peanut, south indian masala, cashew etc.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/product",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-s8WgZks72QHSYy1PjBBcBb9NZBc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Aug 2025 06:51:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product already exists\"\n}"
+						},
+						{
+							"name": "bad request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"A blend of beautifully crafted peanut, south indian masala, cashew etc.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/product",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-e+ha9xlejHktobg8M8vNd4+uAGY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Aug 2025 06:51:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"\\\"product_name\\\" is required\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/product?search=&active=&page&limit&sort&column_name=",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "search from either product name or description"
+								},
+								{
+									"key": "active",
+									"value": "",
+									"description": "active status of the product"
+								},
+								{
+									"key": "page",
+									"value": null,
+									"description": "current page"
+								},
+								{
+									"key": "limit",
+									"value": null,
+									"description": "limit of the data in page"
+								},
+								{
+									"key": "sort",
+									"value": null,
+									"description": "sort type (asc or desc)"
+								},
+								{
+									"key": "column_name",
+									"value": "",
+									"description": "name of the column from which the sort happens"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/product?search=&active=&page&limit&sort&column_name=",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"product"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "",
+											"description": "search from either product name or description"
+										},
+										{
+											"key": "active",
+											"value": "",
+											"description": "active status of the product"
+										},
+										{
+											"key": "page",
+											"value": null,
+											"description": "current page"
+										},
+										{
+											"key": "limit",
+											"value": null,
+											"description": "limit of the data in page"
+										},
+										{
+											"key": "sort",
+											"value": null,
+											"description": "sort type (asc or desc)"
+										},
+										{
+											"key": "column_name",
+											"value": "",
+											"description": "name of the column from which the sort happens"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "323"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"143-vNN53URf6j4QdI0d7i8VyLKtuTI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Aug 2025 09:10:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Products fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"product_name\": \"Chips\",\n            \"description\": \"Taste the authentic flavour of kerala\",\n            \"is_active\": true,\n            \"created_at\": \"2025-08-01T06:53:52.000Z\",\n            \"updated_at\": \"2025-08-01T06:53:52.000Z\"\n        }\n    ],\n    \"meta\": {\n        \"totalItems\": 1,\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalPages\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Add user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJmdWxsX25hbWUiOiJBc2h3aW4gU2VzaGFkcmVlIiwiZW1haWxfaWQiOiJhc2h3aW5AZ21haWwuY29tIiwiZmlyc3RfbmFtZSI6IkFzaHdpbiIsImxhc3RfbmFtZSI6IlNlc2hhZHJlZSIsInJvbGVfaWQiOjEsImlhdCI6MTc1NDAyMzM2OSwiZXhwIjoxNzU0MDI2OTY5fQ.qrI0P_D_3u0vUpRkwarV8wsAJ_Ctu6s1pIHEfkKucaQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Ashwin\",\r\n    \"last_name\": \"Seshadree\",\r\n    \"email_id\": \"ashwin@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"role_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3400/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"first_name\": \"Ashwin\",\r\n    \"last_name\": \"Seshadree\",\r\n    \"email_id\": \"ashwin@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"role_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3400/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3400",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-iGErLku/9taeeOQN+9qwFgLXnuo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Jul 2025 08:37:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User already exists\"\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"first_name\": \"Ashwin\",\r\n    \"last_name\": \"Seshadree\",\r\n    \"email_id\": \"ashwin@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"role_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3400/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3400",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "271"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10f-+MYgDPdE9qVTawMD3G7VtAF/n9U\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Aug 2025 06:17:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"is_active\": true,\n        \"created_at\": \"2025-08-01T06:17:03.100Z\",\n        \"updated_at\": \"2025-08-01T06:17:03.100Z\",\n        \"id\": 1,\n        \"first_name\": \"Ashwin\",\n        \"last_name\": \"Seshadree\",\n        \"email_id\": \"ashwin@gmail.com\",\n        \"role_id\": 1,\n        \"full_name\": \"Ashwin Seshadree\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email_id\": \"ashwin@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3400/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email_id\": \"ashwin@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3400/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3400",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "561"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"231-7OdYC64ULryUjTQwFb0302tHCmE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Jul 2025 07:40:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login successful\",\n    \"user\": {\n        \"id\": 1,\n        \"first_name\": \"Ashwin\",\n        \"last_name\": \"Seshadree\",\n        \"email_id\": \"ashwin@gmail.com\",\n        \"phone_number\": null,\n        \"role_id\": 1,\n        \"is_active\": true,\n        \"createdAt\": \"2025-07-28T07:31:11.000Z\",\n        \"updatedAt\": \"2025-07-28T07:31:11.000Z\",\n        \"full_name\": \"Ashwin Seshadree\"\n    },\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbF9pZCI6ImFzaHdpbkBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiQXNod2luIiwibGFzdF9uYW1lIjoiU2VzaGFkcmVlIiwicm9sZV9pZCI6MSwiaWF0IjoxNzUzNjg4NDQyLCJleHAiOjE3NTM2OTIwNDJ9.Zr72iltGGlD_0-EKfI09YdlgPKHOWHYBAkJiVlRlUZY\"\n    }\n}"
+						},
+						{
+							"name": "bad credential",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email_id\": \"ashwin@gmail.com\",\r\n    \"password\": \"1234567d8\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3400/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3400",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-dBEoW0UmTF+EGUMaprEp9/8zNNA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 28 Jul 2025 08:38:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid credentials\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
