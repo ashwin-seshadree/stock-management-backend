@@ -2,11 +2,6 @@ const joi = require('joi');
 
 const UserRequestValidator = {
     validateCreateUser: async (req, res, next) => {
-        if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
-            return res.status(400).json({
-                message: "Invalid request body. Expected an object."
-            });
-        }
 
         const addUserSchema = joi.object({
             first_name: joi.string().min(1).max(50).required(),
@@ -30,11 +25,6 @@ const UserRequestValidator = {
 
 const AuthRequestValidator = {
     validateLoginUser: async (req, res, next) => {
-        if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
-            return res.status(400).json({
-                message: "Invalid request body. Expected an object."
-            });
-        }
 
         const loginUserSchema = joi.object({
             email_id: joi.string().email().required(),
@@ -54,11 +44,6 @@ const AuthRequestValidator = {
 
 const ProductRequestValidator = {
     validateCreateProduct: async (req, res, next) => {
-        if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
-            return res.status(400).json({
-                message: "Invalid request body. Expected an object."
-            });
-        }
 
         const addProductSchema = joi.object({
             product_name: joi.string().min(1).max(100).required(),
@@ -78,11 +63,6 @@ const ProductRequestValidator = {
 
 const WeightRequestValidator = {
     validateAddWeight: async (req, res, next) => {
-        if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
-            return res.status(400).json({
-                message: "Invalid request body. Expected an object."
-            });
-        }
 
         const addWeightSchema = joi.object({
             weight: joi.string().min(1).max(100).required(),
@@ -100,4 +80,34 @@ const WeightRequestValidator = {
     }
 }
 
-module.exports = { UserRequestValidator, AuthRequestValidator, ProductRequestValidator, WeightRequestValidator };
+const InventoryValidator = {
+    validateAddInventoryItem: async (req, res, next) => {
+
+        const addInventoryItemSchema = joi.object({
+            product_id: joi.number().integer().required(),
+            weight_id: joi.number().integer().required(),
+            quantity: joi.number().integer().min(1).required(),
+            price: joi.string()
+                .pattern(/^\d{1,8}\.\d{2}$/)
+                .required().messages({
+                    'string.base': 'price must be a string',
+                    'string.pattern.base': 'price is not in valid format. eg: "12345678.90" (max 8 digits before decimal and 2 after decimal)',
+                    'string.empty': 'price is required',
+                    'any.required': 'price is required'
+                })
+        });
+
+        const { error } = addInventoryItemSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 'error',
+                message: error.details[0].message,
+            });
+        }
+
+        req.body.price = parseFloat(req.body.price);
+        next();
+    }
+}
+
+module.exports = { UserRequestValidator, AuthRequestValidator, ProductRequestValidator, WeightRequestValidator, InventoryValidator };
