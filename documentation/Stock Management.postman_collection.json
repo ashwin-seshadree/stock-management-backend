@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a9b48017-0dec-4b33-bb1a-14633011707f",
+		"_postman_id": "eb6c33a4-7377-4692-9393-870a58c0b9d1",
 		"name": "Stock Management",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32274547",
-		"_collection_link": "https://ea-tech.postman.co/workspace/EA-Tech-Workspace~9b6111f0-d711-4c17-868f-0296ec4f62c5/collection/32274547-a9b48017-0dec-4b33-bb1a-14633011707f?action=share&source=collection_link&creator=32274547"
+		"_exporter_id": "46892796"
 	},
 	"item": [
 		{
@@ -18,7 +17,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{authToken}}",
+									"value": "{{authtoken}}",
 									"type": "string"
 								}
 							]
@@ -27,7 +26,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"weight\": \"250g\",\r\n    \"description\": \"250 Grams, 0.25 Kilogram\"\r\n}",
+							"raw": "{\r\n    \"weight\": \"10 Units\",\r\n    \"description\": \"10 Unit approx 200g\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,7 +70,7 @@
 							},
 							"status": "Created",
 							"code": 201,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -124,7 +123,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{authToken}}",
+									"value": "{{authtoken}}",
 									"type": "string"
 								}
 							]
@@ -133,7 +132,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"product_name\": \"Chips\",\r\n    \"description\": \"Taste the authentic flavour of kerala\"\r\n}",
+							"raw": "{\r\n    \"product_name\": \"Kai Murukku\",\r\n    \"description\": \"Spiral snack made out of finest rice to give plenty of chrunchiness\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -177,7 +176,7 @@
 							},
 							"status": "Created",
 							"code": 201,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -241,7 +240,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -305,7 +304,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -353,7 +352,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{authToken}}",
+									"value": "{{authtoken}}",
 									"type": "string"
 								}
 							]
@@ -452,7 +451,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -505,7 +504,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJmdWxsX25hbWUiOiJBc2h3aW4gU2VzaGFkcmVlIiwiZW1haWxfaWQiOiJhc2h3aW5AZ21haWwuY29tIiwiZmlyc3RfbmFtZSI6IkFzaHdpbiIsImxhc3RfbmFtZSI6IlNlc2hhZHJlZSIsInJvbGVfaWQiOjEsImlhdCI6MTc1NDAyMzM2OSwiZXhwIjoxNzU0MDI2OTY5fQ.qrI0P_D_3u0vUpRkwarV8wsAJ_Ctu6s1pIHEfkKucaQ",
+									"value": "{{authtoken}}",
 									"type": "string"
 								}
 							]
@@ -522,14 +521,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3400/api/user",
-							"protocol": "http",
+							"raw": "{{baseurl}}/user",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3400",
 							"path": [
-								"api",
 								"user"
 							]
 						}
@@ -631,7 +627,7 @@
 							},
 							"status": "Created",
 							"code": 201,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -678,6 +674,22 @@
 			"item": [
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"// Store the token in an environment variable\r",
+									"pm.environment.set(\"authtoken\", response.data.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -691,14 +703,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3400/api/auth/login",
-							"protocol": "http",
+							"raw": "{{baseurl}}/auth/login",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3400",
 							"path": [
-								"api",
 								"auth",
 								"login"
 							]
@@ -840,6 +849,441 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Invalid credentials\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "Add Inventory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"weight_id\": 2,\r\n    \"product_id\": 3,\r\n    \"quantity\": 100,\r\n    \"price\": \"50.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/inventory",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"inventory"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "price empty",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"weight_id\": 1,\r\n    \"product_id\": 1,\r\n    \"quantity\": 15,\r\n    \"price\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/inventory",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"inventory"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-XwAIl76V7H0QI6lrKWERNbOpxRQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 08:34:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"price is required\"\n}"
+						},
+						{
+							"name": "price not valid string",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"weight_id\": 1,\r\n    \"product_id\": 1,\r\n    \"quantity\": 15,\r\n    \"price\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/inventory",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"inventory"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-ecKUxobuwtaSCFSau+8qcZH4/OU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 08:35:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"price must be a string\"\n}"
+						},
+						{
+							"name": "no price",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"weight_id\": 1,\r\n    \"product_id\": 1,\r\n    \"quantity\": 15\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/inventory",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"inventory"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-XwAIl76V7H0QI6lrKWERNbOpxRQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 08:36:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"price is required\"\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"weight_id\": 1,\r\n    \"product_id\": 1,\r\n    \"quantity\": 15,\r\n    \"price\": \"10.23\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/inventory",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"inventory"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "209"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d1-mG95ZtVS3e4j1vL9fXaGGfE+tDk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 08:37:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Item added successfully\",\n    \"data\": {\n        \"created_at\": \"2025-08-02T08:37:08.936Z\",\n        \"updated_at\": \"2025-08-02T08:37:08.936Z\",\n        \"id\": 1,\n        \"weight_id\": 1,\n        \"product_id\": 1,\n        \"quantity\": 15,\n        \"price\": 10.23\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Inventories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/inventory?search=&page=&limit=&sort=&column_name=",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"inventory"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "search from either product name or description"
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "current page"
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "limit of the data in page"
+								},
+								{
+									"key": "sort",
+									"value": "",
+									"description": "sort type (asc or desc)"
+								},
+								{
+									"key": "column_name",
+									"value": "",
+									"description": "name of the column from which the sort happens"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/inventory?search=&page=&limit=&sort=&column_name=",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"inventory"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "",
+											"description": "search from either product name or description"
+										},
+										{
+											"key": "page",
+											"value": "",
+											"description": "current page"
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"description": "limit of the data in page"
+										},
+										{
+											"key": "sort",
+											"value": "",
+											"description": "sort type (asc or desc)"
+										},
+										{
+											"key": "column_name",
+											"value": "",
+											"description": "name of the column from which the sort happens"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "656"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"290-8Uo828C6fDPqLIRZ2nNi0SptKYw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 09:10:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Products fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"product_name\": \"Kerala Chips\",\n            \"product_description\": \"Taste the authentic flavour of kerala. Cooked in original coconut oil to preserve the flavours of God's Own Country\",\n            \"product_weight\": \"250g\",\n            \"product_quantity\": 15,\n            \"product_price\": \"10.23\"\n        },\n        {\n            \"id\": 3,\n            \"product_name\": \"Mulagapodi\",\n            \"product_description\": \"Blended with spicy mix of dal, indian spices to resonate the taste of Kerala Brahmin podi which goes along with Dosa and Idly primarily\",\n            \"product_weight\": \"250g\",\n            \"product_quantity\": 30,\n            \"product_price\": \"10.23\"\n        }\n    ],\n    \"meta\": {\n        \"totalItems\": 2,\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalPages\": 1\n    }\n}"
 						}
 					]
 				}
