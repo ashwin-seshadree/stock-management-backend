@@ -47,7 +47,7 @@ const ProductRequestValidator = {
 
         const addProductSchema = joi.object({
             product_name: joi.string().min(1).max(100).required(),
-            description: joi.string().max(500).optional(),
+            description: joi.string().allow('').optional().max(500),
         });
 
         const { error } = addProductSchema.validate(req.body);
