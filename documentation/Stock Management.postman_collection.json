@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "eb6c33a4-7377-4692-9393-870a58c0b9d1",
+		"_postman_id": "0d31a8bc-fe54-4e3f-9a57-09259b510ebe",
 		"name": "Stock Management",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "46892796"
+		"_exporter_id": "32274547",
+		"_collection_link": "https://ea-tech.postman.co/workspace/EA-Tech-Workspace~9b6111f0-d711-4c17-868f-0296ec4f62c5/collection/32274547-0d31a8bc-fe54-4e3f-9a57-09259b510ebe?action=share&source=collection_link&creator=32274547"
 	},
 	"item": [
 		{
@@ -874,7 +875,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"weight_id\": 2,\r\n    \"product_id\": 3,\r\n    \"quantity\": 100,\r\n    \"price\": \"50.00\"\r\n}",
+							"raw": "{\r\n    \"weight_id\": 1,\r\n    \"product_id\": 1,\r\n    \"quantity\": 100,\r\n    \"price\": \"50.00\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -918,7 +919,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -982,7 +983,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1046,7 +1047,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1110,7 +1111,7 @@
 							},
 							"status": "Created",
 							"code": 201,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1147,6 +1148,70 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Item added successfully\",\n    \"data\": {\n        \"created_at\": \"2025-08-02T08:37:08.936Z\",\n        \"updated_at\": \"2025-08-02T08:37:08.936Z\",\n        \"id\": 1,\n        \"weight_id\": 1,\n        \"product_id\": 1,\n        \"quantity\": 15,\n        \"price\": 10.23\n    }\n}"
+						},
+						{
+							"name": "inventory exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"weight_id\": 1,\r\n    \"product_id\": 1,\r\n    \"quantity\": 100,\r\n    \"price\": \"50.00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/inventory",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"inventory"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-eUhAK8MUGSLIvALFHw7+tmRdQJA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 08 Aug 2025 06:28:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Inventory item already exists\"\n}"
 						}
 					]
 				},
@@ -1247,7 +1312,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1284,6 +1349,240 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Products fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"product_name\": \"Kerala Chips\",\n            \"product_description\": \"Taste the authentic flavour of kerala. Cooked in original coconut oil to preserve the flavours of God's Own Country\",\n            \"product_weight\": \"250g\",\n            \"product_quantity\": 15,\n            \"product_price\": \"10.23\"\n        },\n        {\n            \"id\": 3,\n            \"product_name\": \"Mulagapodi\",\n            \"product_description\": \"Blended with spicy mix of dal, indian spices to resonate the taste of Kerala Brahmin podi which goes along with Dosa and Idly primarily\",\n            \"product_weight\": \"250g\",\n            \"product_quantity\": 30,\n            \"product_price\": \"10.23\"\n        }\n    ],\n    \"meta\": {\n        \"totalItems\": 2,\n        \"currentPage\": 1,\n        \"pageSize\": 10,\n        \"totalPages\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "Add Purchase",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"purchase_items\": [\r\n        {\r\n            \"product_id\": 1,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"23.25\",\r\n            \"selling_price\": \"30\"\r\n        },\r\n        {\r\n            \"product_id\": 2,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"40.50\",\r\n            \"selling_price\": \"45\"\r\n        },\r\n        {\r\n            \"product_id\": 3,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"55\",\r\n            \"selling_price\": \"65\"\r\n        }\r\n    ],\r\n    \"purchase_date\": \"2025-12-4\",\r\n    \"purchase_bill_number\": \"FRVWR23d3s423E\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/purchase",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"purchase"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "body param is missing",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\": 1,\r\n    \"weight_id\": 1,\r\n    \"quantity\": 324\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/purchase",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"purchase"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-8CpES388o34k7v8SuecSRKzTzW4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 08 Aug 2025 09:13:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"purchase price is required\"\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\": 1,\r\n    \"weight_id\": 1,\r\n    \"quantity\": 200,\r\n    \"purchase_price\": \"23.25\",\r\n    \"purchase_date\": \"2025-12-4\",\r\n    \"purchase_bill_number\": \"FRVWR23d3423\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/purchase",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"purchase"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "304"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"130-fEou69x+GOXyrhRdDIYGzkeeH6o\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 08 Aug 2025 09:41:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Purchase added successfully\",\n    \"data\": {\n        \"created_at\": \"2025-08-08T09:41:18.634Z\",\n        \"updated_at\": \"2025-08-08T09:41:18.634Z\",\n        \"id\": 5,\n        \"product_id\": 1,\n        \"weight_id\": 1,\n        \"quantity\": 200,\n        \"purchase_price\": 23.25,\n        \"purchase_date\": \"2025-12-03T18:30:00.000Z\",\n        \"purchase_bill_number\": \"FRVWR23d3423\"\n    }\n}"
+						},
+						{
+							"name": "Success v2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"purchase_items\": [\r\n        {\r\n            \"product_id\": 1,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"23.25\",\r\n            \"selling_price\": \"30\"\r\n        },\r\n        {\r\n            \"product_id\": 2,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"40.50\",\r\n            \"selling_price\": \"45\"\r\n        },\r\n        {\r\n            \"product_id\": 3,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"55\",\r\n            \"selling_price\": \"65\"\r\n        }\r\n    ],\r\n    \"purchase_date\": \"2025-12-4\",\r\n    \"purchase_bill_number\": \"FRVWR23d3s423\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/purchase",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"purchase"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "779"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30b-0Axru69+jAdkVPn4MhJmI+TAri0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 08 Aug 2025 12:26:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Purchase added successfully\",\n    \"data\": [\n        {\n            \"created_at\": \"2025-08-08T12:26:35.345Z\",\n            \"updated_at\": \"2025-08-08T12:26:35.345Z\",\n            \"id\": 1,\n            \"product_id\": 1,\n            \"weight_id\": 1,\n            \"quantity\": 200,\n            \"purchase_price\": 23.25,\n            \"purchase_date\": \"2025-12-03T18:30:00.000Z\",\n            \"purchase_bill_number\": \"FRVWR23d3s423\"\n        },\n        {\n            \"created_at\": \"2025-08-08T12:26:35.346Z\",\n            \"updated_at\": \"2025-08-08T12:26:35.347Z\",\n            \"id\": 2,\n            \"product_id\": 2,\n            \"weight_id\": 1,\n            \"quantity\": 200,\n            \"purchase_price\": 40.5,\n            \"purchase_date\": \"2025-12-03T18:30:00.000Z\",\n            \"purchase_bill_number\": \"FRVWR23d3s423\"\n        },\n        {\n            \"created_at\": \"2025-08-08T12:26:35.347Z\",\n            \"updated_at\": \"2025-08-08T12:26:35.348Z\",\n            \"id\": 3,\n            \"product_id\": 3,\n            \"weight_id\": 1,\n            \"quantity\": 200,\n            \"purchase_price\": 55,\n            \"purchase_date\": \"2025-12-03T18:30:00.000Z\",\n            \"purchase_bill_number\": \"FRVWR23d3s423\"\n        }\n    ]\n}"
 						}
 					]
 				}
