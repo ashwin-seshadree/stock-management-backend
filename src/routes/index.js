@@ -9,5 +9,6 @@ app.use("/user", require("./sub-routes/user"))
 app.use("/auth", require("./sub-routes/auth"));
 app.use("/product", require("./sub-routes/product"));
 app.use("/inventory", require("./sub-routes/inventory"));
+app.use("/purchase", require("./sub-routes/purchase"));
 
 module.exports = app;

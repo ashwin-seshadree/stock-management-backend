@@ -5,7 +5,6 @@ module.exports = {
                 message: "Invalid request body. Expected an object."
             });
         }
-        
         next();
     }
 }

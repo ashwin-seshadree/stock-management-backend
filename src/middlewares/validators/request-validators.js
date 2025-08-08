@@ -80,7 +80,7 @@ const WeightRequestValidator = {
     }
 }
 
-const InventoryValidator = {
+const InventoryRequestValidator = {
     validateAddInventoryItem: async (req, res, next) => {
 
         const addInventoryItemSchema = joi.object({
@@ -110,4 +110,35 @@ const InventoryValidator = {
     }
 }
 
-module.exports = { UserRequestValidator, AuthRequestValidator, ProductRequestValidator, WeightRequestValidator, InventoryValidator };
+const PurchaseRequestValidator = {
+    validateAddPurchase: async (req, res, next) => {
+        const addPurchaseSchema = joi.object({
+            product_id: joi.number().integer().required(),
+            weight_id: joi.number().integer().required(),
+            quantity: joi.number().integer().min(1).required(),
+            purchase_price: joi.string()
+                .pattern(/^\d{1,8}\.\d{2}$/)
+                .required().messages({
+                    'string.base': 'purchase price must be a string',
+                    'string.pattern.base': 'purchase price is not in valid format. eg: "12345678.90" (max 8 digits before decimal and 2 after decimal)',
+                    'string.empty': 'purchase price is required',
+                    'any.required': 'purchase price is required'
+                }),
+            purchase_date: joi.date().required(),
+            purchase_bill_number: joi.string().max(50).optional(),
+        });
+
+        const { error } = addPurchaseSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 'error',
+                message: error.details[0].message,
+            });
+        }
+
+        req.body.purchase_price = parseFloat(req.body.purchase_price);
+        next();
+    }
+}
+
+module.exports = { UserRequestValidator, AuthRequestValidator, ProductRequestValidator, WeightRequestValidator, InventoryRequestValidator, PurchaseRequestValidator };

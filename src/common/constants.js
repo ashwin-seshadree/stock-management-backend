@@ -5,6 +5,8 @@ const tables = {
     master_weight_chart: 'master_weight_chart',
     master_inventory_list: 'master_inventory_list',
     master_inventory_list_view: 'master_inventory_list_view',
+    master_purchase: 'master_purchase',
+    master_purchase_view: 'master_purchase_view',
 }
 
 module.exports = { tables }
