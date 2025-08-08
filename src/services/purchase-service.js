@@ -1,8 +1,8 @@
 const PurchaseModal = require("../models/MasterPurchase");
 
 class PurchaseService {
-    async addPurchase(data, t) {
-        return await PurchaseModal.create(data, { transaction: t });
+    async addBulkPurchase(data, t) {
+        return await PurchaseModal.bulkCreate(data, { transaction: t });
     }
 
     async findPurchaseByParam(data) {

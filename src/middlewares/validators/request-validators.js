@@ -112,18 +112,31 @@ const InventoryRequestValidator = {
 
 const PurchaseRequestValidator = {
     validateAddPurchase: async (req, res, next) => {
-        const addPurchaseSchema = joi.object({
+
+        const purchaseProductSchema = joi.object({
             product_id: joi.number().integer().required(),
             weight_id: joi.number().integer().required(),
             quantity: joi.number().integer().min(1).required(),
             purchase_price: joi.string()
-                .pattern(/^\d{1,8}\.\d{2}$/)
+                .pattern(/^\d{1,8}(\.\d{1,2})?$/)
                 .required().messages({
                     'string.base': 'purchase price must be a string',
                     'string.pattern.base': 'purchase price is not in valid format. eg: "12345678.90" (max 8 digits before decimal and 2 after decimal)',
                     'string.empty': 'purchase price is required',
                     'any.required': 'purchase price is required'
                 }),
+            selling_price: joi.string()
+                .pattern(/^\d{1,8}(\.\d{1,2})?$/)
+                .required().messages({
+                    'string.base': 'selling price must be a string',
+                    'string.pattern.base': 'selling price is not in valid format. eg: "12345678.90" (max 8 digits before decimal and 2 after decimal)',
+                    'string.empty': 'selling price is required',
+                    'any.required': 'selling price is required'
+                })
+        });
+
+        const addPurchaseSchema = joi.object({
+            purchase_items: joi.array().items(purchaseProductSchema).min(1).required(),
             purchase_date: joi.date().required(),
             purchase_bill_number: joi.string().max(50).optional(),
         });
@@ -135,8 +148,6 @@ const PurchaseRequestValidator = {
                 message: error.details[0].message,
             });
         }
-
-        req.body.purchase_price = parseFloat(req.body.purchase_price);
         next();
     }
 }

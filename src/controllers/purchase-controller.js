@@ -10,16 +10,47 @@ module.exports = {
 
         try {
             await sequelize.transaction(async (transaction) => {
-                const isProductInInventory = await inventoryService.findInventoryItemByParams({ product_id: purchaseData.product_id });
-                if (!isProductInInventory) {
-                    return res.status(404).json({ message: 'Product not found in inventory' });
-                }
-                const newPurchase = await purchaseService.addPurchase(purchaseData, transaction);
-                await inventoryService.updateStockAfterPurchase({ product_id: newPurchase.product_id, quantity: newPurchase.quantity }, transaction);
+                const insertPurchaseData = await Promise.all(
+                    purchaseData.purchase_items.map(async (item) => {
+                        const isProductInInventory = await inventoryService.findInventoryItemByParams({
+                            product_id: item.product_id,
+                            weight_id: item.weight_id,
+                        });
+
+                        if (!isProductInInventory) {
+                            let insertData = {
+                                product_id: item.product_id,
+                                weight_id: item.weight_id,
+                                quantity: item.quantity,
+                                price: item.selling_price,
+                            };
+                            await inventoryService.addItem(insertData, transaction);
+                        } else {
+                            await inventoryService.updateStockAfterPurchase({
+                                inventory_id: isProductInInventory.inventory_id,
+                                quantity: item.quantity,
+                            }, transaction);
+                        }
+
+                        const returndata = {
+                            product_id: item.product_id,
+                            weight_id: item.weight_id,
+                            quantity: item.quantity,
+                            purchase_price: parseFloat(item.purchase_price),
+                            purchase_date: purchaseData.purchase_date,
+                            purchase_bill_number: purchaseData.purchase_bill_number || null,
+                        };
+
+                        return returndata;
+                    })
+                );
+
+                const newPurchase = await purchaseService.addBulkPurchase(insertPurchaseData, transaction);
+
                 return res.status(201).json({
                     status: 'success',
                     message: 'Purchase added successfully',
-                    data: newPurchase
+                    data: newPurchase,
                 });
             });
         } catch (error) {

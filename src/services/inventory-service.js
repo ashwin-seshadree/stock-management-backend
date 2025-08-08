@@ -1,8 +1,8 @@
 const InventoryModal = require("../models/MasterInventoryList");
 
 class InventoryService {
-    async addItem(data) {
-        return await InventoryModal.create(data);
+    async addItem(data, t) {
+        return await InventoryModal.create(data, { transaction: t });
     }
 
     async findInventoryItemByParams(data) {
@@ -13,14 +13,14 @@ class InventoryService {
 
     async updateStockAfterPurchase(data, t) {
         const item = await InventoryModal.findOne({
-            where: { product_id: data.product_id }
+            where: { id: data.inventory_id }
         });
-        
+
         const updatedQuantity = +item.quantity + +data.quantity;
 
-        return await InventoryModal.update(
+        return InventoryModal.update(
             { quantity: updatedQuantity },
-            { where: { product_id: data.product_id }, transaction: t }
+            { where: { id: data.inventory_id }, transaction: t }
         );
     }
 }
