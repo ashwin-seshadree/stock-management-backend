@@ -16,7 +16,6 @@ module.exports = {
                             product_id: item.product_id,
                             weight_id: item.weight_id,
                         });
-
                         if (!isProductInInventory) {
                             let insertData = {
                                 product_id: item.product_id,
@@ -27,8 +26,9 @@ module.exports = {
                             await inventoryService.addItem(insertData, transaction);
                         } else {
                             await inventoryService.updateStockAfterPurchase({
-                                inventory_id: isProductInInventory.inventory_id,
+                                inventory_id: isProductInInventory.id,
                                 quantity: item.quantity,
+                                price: item.selling_price,
                             }, transaction);
                         }
 

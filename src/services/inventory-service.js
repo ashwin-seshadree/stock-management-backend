@@ -19,7 +19,7 @@ class InventoryService {
         const updatedQuantity = +item.quantity + +data.quantity;
 
         return InventoryModal.update(
-            { quantity: updatedQuantity },
+            { quantity: updatedQuantity, price: data.price },
             { where: { id: data.inventory_id }, transaction: t }
         );
     }
