@@ -1,43 +1,47 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
-const { tables } = require('../common/constants');
+const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tables.master_inventory_list, {
+    await queryInterface.createTable(tables.user, {
       id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true,
       },
-      product_id: {
-        type: Sequelize.BIGINT,
+      first_name: {
+        type: Sequelize.STRING,
         allowNull: false,
-        references: {
-          model: tables.master_products,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
-      weight_id: {
+      last_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      email_id: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: Sequelize.TEXT('long'),
+        allowNull: false,
+      },
+      phone_number: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      role_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: tables.master_weight_chart,
+          model: tables.master_user_roles,
           key: 'id',
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
-      quantity: {
-        type: Sequelize.BIGINT,
-        allowNull: false,
-      },
-      price: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: true,
-        defaultValue: 0.00,
+      is_active: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -53,6 +57,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tables.master_inventory_list);
+    await queryInterface.dropTable(tables.user);
   }
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
-const { tables } = require('../common/constants');
+const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.sequelize.query(`

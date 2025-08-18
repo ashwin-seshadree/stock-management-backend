@@ -1,10 +1,10 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
-const { tables } = require('../common/constants');
+const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tables.master_purchase, {
+    await queryInterface.createTable(tables.master_inventory_list, {
       id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
@@ -34,17 +34,10 @@ module.exports = {
         type: Sequelize.BIGINT,
         allowNull: false,
       },
-      purchase_price: {
+      price: {
         type: Sequelize.DECIMAL(10, 2),
-        allowNull: false,
-      },
-      purchase_date: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      purchase_bill_number: {
-        type: Sequelize.STRING,
         allowNull: true,
+        defaultValue: 0.00,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -56,10 +49,10 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
-    });
+    })
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tables.master_purchase);
+    await queryInterface.dropTable(tables.master_inventory_list);
   }
 };

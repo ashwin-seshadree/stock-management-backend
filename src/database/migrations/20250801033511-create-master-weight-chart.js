@@ -1,19 +1,19 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
-const { tables } = require('../common/constants');
+const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tables.master_products, {
+    await queryInterface.createTable(tables.master_weight_chart, {
       id: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      product_name: {
+      weight: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       description: {
         type: Sequelize.TEXT,
@@ -37,6 +37,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tables.products);
+    await queryInterface.dropTable(tables.master_weight_chart);
   }
 };

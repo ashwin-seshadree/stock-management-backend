@@ -5,5 +5,6 @@ const { purchaseValidator } = require('../../middlewares/existence/validateExist
 const purchaseController = require('../../controllers/purchase-controller.js');
 
 app.post("/", PurchaseRequestValidator['validateAddPurchase'], purchaseValidator['checkPurchaseExists'], purchaseController['addPurchase']);
+app.delete("/cancel-purchase", PurchaseRequestValidator['cancelPurchase'], purchaseValidator['checkPurchaseAvailable'], purchaseController['cancelPurchase']);
 
 module.exports = app;

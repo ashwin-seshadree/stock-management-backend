@@ -86,10 +86,26 @@ const purchaseValidator = {
         }
 
         try {
-            const purchaseData = await purchaseService.findPurchaseByParam({purchase_bill_number});
+            const purchaseData = await purchaseService.findPurchaseByParam({ purchase_bill_number });
             if (purchaseData) {
                 return res.status(400).json({ message: 'Purchase with this bill number already exists' });
             }
+            next();
+        } catch (err) {
+            console.error('Error in validateExistence middleware:', err);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    },
+
+    checkPurchaseAvailable: async (req, res, next) => {
+        const { purchase_bill_number } = req.body;
+
+        try {
+            const purchaseData = await purchaseService.findManyPurchaseByParam({ purchase_bill_number });
+            if (!purchaseData || purchaseData.length === 0) {
+                return res.status(400).json({ message: 'Purchase not found' });
+            }
+            req['purchase_data'] = purchaseData;
             next();
         } catch (err) {
             console.error('Error in validateExistence middleware:', err);

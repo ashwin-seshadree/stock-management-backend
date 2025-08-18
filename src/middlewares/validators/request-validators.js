@@ -47,7 +47,7 @@ const ProductRequestValidator = {
 
         const addProductSchema = joi.object({
             product_name: joi.string().min(1).max(100).required(),
-            description: joi.string().allow('').optional().max(500),
+            description: joi.string().allow('', null).optional().max(500),
         });
 
         const { error } = addProductSchema.validate(req.body);
@@ -142,6 +142,21 @@ const PurchaseRequestValidator = {
         });
 
         const { error } = addPurchaseSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 'error',
+                message: error.details[0].message,
+            });
+        }
+        next();
+    },
+
+    cancelPurchase: async (req, res, next) => {
+        const cancelPurchaseSchema = joi.object({
+            purchase_bill_number: joi.string().max(50).required(),
+        });
+
+        const { error } = cancelPurchaseSchema.validate(req.body);
         if (error) {
             return res.status(400).json({
                 status: 'error',

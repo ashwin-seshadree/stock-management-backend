@@ -10,6 +10,12 @@ class PurchaseService {
             where: data
         });
     }
+
+    async findManyPurchaseByParam(data) {
+        return await PurchaseModal.findAll({
+            where: data
+        });
+    }
 }
 
 module.exports = { PurchaseService };

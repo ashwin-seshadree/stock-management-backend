@@ -11,15 +11,23 @@ class InventoryService {
         });
     }
 
-    async updateStockAfterPurchase(data, t) {
+    async updateStock(data, t, is_cancellation = false) {
         const item = await InventoryModal.findOne({
             where: { id: data.inventory_id }
         });
-
-        const updatedQuantity = +item.quantity + +data.quantity;
+        let updatedQuantity;
+        let updateData = {}
+        if (is_cancellation) {
+            updatedQuantity = +item.quantity - +data.quantity;
+            updateData['quantity'] = updatedQuantity;
+        } else {
+            updatedQuantity = +item.quantity + +data.quantity;
+            updateData['quantity'] = updatedQuantity;
+            updateData['price'] = data.price;
+        }
 
         return InventoryModal.update(
-            { quantity: updatedQuantity, price: data.price },
+            updateData,
             { where: { id: data.inventory_id }, transaction: t }
         );
     }
