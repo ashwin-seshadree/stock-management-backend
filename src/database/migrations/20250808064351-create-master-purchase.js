@@ -15,12 +15,16 @@ module.exports = {
         allowNull: true,
       },
       payment_type: {
-        type: Sequelize.ENUM('CASH', 'CREDIT_CARD', 'DEBIT_CARD', 'NET_BANKING'),
+        type: Sequelize.ENUM('cash', 'credit_card', 'debit_card', 'net_banking'),
         allowNull: false,
-        defaultValue: 'CASH',
+        defaultValue: 'cash',
       },
       date_of_purchase: {
         type: Sequelize.DATE,
+        allowNull: false,
+      },
+      purchase_amount: {
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
       created_at: {

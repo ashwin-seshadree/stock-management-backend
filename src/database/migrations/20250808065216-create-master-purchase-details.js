@@ -38,7 +38,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      quantity: {
+      purchase_quantity: {
         type: Sequelize.BIGINT,
         allowNull: false,
       },

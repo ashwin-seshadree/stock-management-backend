@@ -2,16 +2,16 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const MasterWeightChart = sequelize.define('MasterWeightChart', {
-    id: {
+const MasterProducts = sequelize.define(tables.master_products, {
+    product_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
     },
-    weight: {
+    product_name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
     },
     description: {
         type: DataTypes.TEXT,
@@ -32,13 +32,13 @@ const MasterWeightChart = sequelize.define('MasterWeightChart', {
         defaultValue: Sequelize.NOW,
     }
 }, {
-    tableName: tables.master_weight_chart,
+    tableName: tables.master_products,
     timestamps: false,
 });
 
-MasterWeightChart.prototype.toJSON = function () {
+MasterProducts.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     return values;
 }
 
-module.exports = MasterWeightChart;
+module.exports = MasterProducts;

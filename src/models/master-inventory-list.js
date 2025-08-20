@@ -2,8 +2,8 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const MasterPurchase = sequelize.define('MasterPurchase', {
-    id: {
+const MasterInventoryList = sequelize.define(tables.master_inventory_list, {
+    inventory_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
@@ -13,7 +13,7 @@ const MasterPurchase = sequelize.define('MasterPurchase', {
         allowNull: false,
         references: {
             model: tables.master_products,
-            key: 'id',
+            key: 'product_id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -23,7 +23,7 @@ const MasterPurchase = sequelize.define('MasterPurchase', {
         allowNull: false,
         references: {
             model: tables.master_weight_chart,
-            key: 'id',
+            key: 'weight_id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -32,17 +32,10 @@ const MasterPurchase = sequelize.define('MasterPurchase', {
         type: Sequelize.BIGINT,
         allowNull: false,
     },
-    purchase_price: {
+    price: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
-    },
-    purchase_date: {
-        type: DataTypes.DATE,
-        allowNull: false,
-    },
-    purchase_bill_number: {
-        type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: 0.00,
     },
     created_at: {
         type: DataTypes.DATE,
@@ -55,13 +48,13 @@ const MasterPurchase = sequelize.define('MasterPurchase', {
         defaultValue: Sequelize.NOW,
     }
 }, {
-    tableName: tables.master_purchase,
+    tableName: tables.master_inventory_list,
     timestamps: false,
 });
 
-MasterPurchase.prototype.toJSON = function () {
+MasterInventoryList.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     return values;
 }
 
-module.exports = MasterPurchase;
+module.exports = MasterInventoryList;

@@ -2,40 +2,20 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const User = sequelize.define('User', {
-    id: {
+const MasterWeightChart = sequelize.define(tables.master_weight_chart, {
+    weight_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
     },
-    first_name: {
+    weight: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
     },
-    last_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    email_id: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    password: {
-        type: DataTypes.TEXT('long'),
-        allowNull: false,
-    },
-    phone_number: {
-        type: DataTypes.STRING,
+    description: {
+        type: DataTypes.TEXT,
         allowNull: true,
-    },
-    role_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: tables.master_user_roles,
-            key: 'id',
-        },
     },
     is_active: {
         type: DataTypes.BOOLEAN,
@@ -52,15 +32,13 @@ const User = sequelize.define('User', {
         defaultValue: Sequelize.NOW,
     }
 }, {
-    tableName: tables.user,
+    tableName: tables.master_weight_chart,
     timestamps: false,
 });
 
-User.prototype.toJSON = function () {
+MasterWeightChart.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
-    values.full_name = `${values.first_name} ${values.last_name}`;
-    delete values.password;
     return values;
-};
+}
 
-module.exports = User;
+module.exports = MasterWeightChart;
