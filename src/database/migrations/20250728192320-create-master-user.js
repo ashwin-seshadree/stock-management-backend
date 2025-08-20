@@ -4,8 +4,8 @@
 const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tables.user, {
-      id: {
+    await queryInterface.createTable(tables.master_user, {
+      user_id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true,
@@ -32,11 +32,11 @@ module.exports = {
         allowNull: true,
       },
       role_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: false,
         references: {
           model: tables.master_user_roles,
-          key: 'id',
+          key: 'role_id',
         },
       },
       is_active: {
@@ -57,6 +57,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tables.user);
+    await queryInterface.dropTable(tables.master_user);
   }
 };

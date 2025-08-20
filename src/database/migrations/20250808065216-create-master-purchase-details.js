@@ -4,11 +4,19 @@
 const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable(tables.master_inventory_list, {
-      inventory_id: {
+    await queryInterface.createTable(tables.master_purchase_details, {
+      purchase_detail_id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true,
+      },
+      purchase_id: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        references: {
+          model: tables.master_purchase,
+          key: 'purchase_id',
+        }
       },
       product_id: {
         type: Sequelize.BIGINT,
@@ -34,10 +42,9 @@ module.exports = {
         type: Sequelize.BIGINT,
         allowNull: false,
       },
-      price: {
+      purchase_price: {
         type: Sequelize.DECIMAL(10, 2),
-        allowNull: true,
-        defaultValue: 0.00,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -49,10 +56,10 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
-    })
+    });
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable(tables.master_inventory_list);
+    await queryInterface.dropTable(tables.master_purchase_details);
   }
 };

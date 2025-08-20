@@ -5,8 +5,8 @@ const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tables.master_weight_chart, {
-      id: {
-        type: Sequelize.INTEGER,
+      weight_id: {
+        type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true,
       },
