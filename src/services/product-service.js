@@ -1,4 +1,4 @@
-const masterProductsModal = require('../models/MasterProducts');
+const masterProductsModal = require('../models/master-products');
 
 class ProductService {
     async createProduct(productData) {
@@ -6,7 +6,7 @@ class ProductService {
     }
 
     async findProductById(productId) {
-        return await masterProductsModal.findOne({ where: { id: productId } });
+        return await masterProductsModal.findByPk(productId);
     }
 
     async findProductByName(productName) {

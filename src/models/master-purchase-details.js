@@ -2,7 +2,7 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const MasterPurchase = sequelize.define(tables.master_purchase_details, {
+const MasterPurchaseDetails = sequelize.define(tables.master_purchase_details, {
     purchase_detail_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
@@ -55,13 +55,13 @@ const MasterPurchase = sequelize.define(tables.master_purchase_details, {
         defaultValue: Sequelize.NOW,
     }
 }, {
-    tableName: tables.master_purchase,
+    tableName: tables.master_purchase_details,
     timestamps: false,
 });
 
-MasterPurchase.prototype.toJSON = function () {
+MasterPurchaseDetails.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     return values;
 }
 
-module.exports = MasterPurchase;
+module.exports = MasterPurchaseDetails;

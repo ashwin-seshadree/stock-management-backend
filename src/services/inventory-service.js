@@ -1,4 +1,4 @@
-const InventoryModal = require("../models/MasterInventoryList");
+const InventoryModal = require("../models/master-inventory-list");
 
 class InventoryService {
     async addItem(data, t) {

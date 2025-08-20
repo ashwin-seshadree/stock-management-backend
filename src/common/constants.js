@@ -10,4 +10,15 @@ const tables = {
     master_purchase_view: 'master_purchase_view',
 };
 
-module.exports = { tables }
+const payment_types = {
+    cash: 'cash',
+    credit_card: 'credit_card',
+    debit_card: 'debit_card',
+    net_banking: 'net_banking',
+}
+
+const enums = {
+    payment_types: Object.values(payment_types),
+}
+
+module.exports = { tables, payment_types, enums }

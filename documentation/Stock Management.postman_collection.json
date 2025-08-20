@@ -1374,7 +1374,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"purchase_items\": [\r\n        {\r\n            \"product_id\": 1,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"23.25\",\r\n            \"selling_price\": \"30\"\r\n        },\r\n        {\r\n            \"product_id\": 2,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"40.50\",\r\n            \"selling_price\": \"45\"\r\n        },\r\n        {\r\n            \"product_id\": 3,\r\n            \"weight_id\": 1,\r\n            \"quantity\": 200,\r\n            \"purchase_price\": \"55\",\r\n            \"selling_price\": \"65\"\r\n        }\r\n    ],\r\n    \"purchase_date\": \"2025-12-4\",\r\n    \"purchase_bill_number\": \"FRVWR23d3ss423E\"\r\n}",
+							"raw": "{\r\n    \"purchase_items\": [\r\n        {\r\n            \"product_id\": 1,\r\n            \"weight_id\": 1,\r\n            \"purchase_quantity\": 200,\r\n            \"purchase_price\": \"23.25\",\r\n            \"selling_price\": \"30\"\r\n        },\r\n        {\r\n            \"product_id\": 2,\r\n            \"weight_id\": 1,\r\n            \"purchase_quantity\": 200,\r\n            \"purchase_price\": \"40.50\",\r\n            \"selling_price\": \"45\"\r\n        },\r\n        {\r\n            \"product_id\": 3,\r\n            \"weight_id\": 1,\r\n            \"purchase_quantity\": 200,\r\n            \"purchase_price\": \"55\",\r\n            \"selling_price\": \"65\"\r\n        }\r\n    ],\r\n    \"bill_number\": \"FRVWR23d3ss423E\",\r\n    \"date_of_purchase\": \"2025-12-4\",\r\n    \"payment_type\": \"cash\",\r\n    \"purchase_amount\": \"1547.20\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1583,6 +1583,70 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Purchase added successfully\",\n    \"data\": [\n        {\n            \"created_at\": \"2025-08-08T12:26:35.345Z\",\n            \"updated_at\": \"2025-08-08T12:26:35.345Z\",\n            \"id\": 1,\n            \"product_id\": 1,\n            \"weight_id\": 1,\n            \"quantity\": 200,\n            \"purchase_price\": 23.25,\n            \"purchase_date\": \"2025-12-03T18:30:00.000Z\",\n            \"purchase_bill_number\": \"FRVWR23d3s423\"\n        },\n        {\n            \"created_at\": \"2025-08-08T12:26:35.346Z\",\n            \"updated_at\": \"2025-08-08T12:26:35.347Z\",\n            \"id\": 2,\n            \"product_id\": 2,\n            \"weight_id\": 1,\n            \"quantity\": 200,\n            \"purchase_price\": 40.5,\n            \"purchase_date\": \"2025-12-03T18:30:00.000Z\",\n            \"purchase_bill_number\": \"FRVWR23d3s423\"\n        },\n        {\n            \"created_at\": \"2025-08-08T12:26:35.347Z\",\n            \"updated_at\": \"2025-08-08T12:26:35.348Z\",\n            \"id\": 3,\n            \"product_id\": 3,\n            \"weight_id\": 1,\n            \"quantity\": 200,\n            \"purchase_price\": 55,\n            \"purchase_date\": \"2025-12-03T18:30:00.000Z\",\n            \"purchase_bill_number\": \"FRVWR23d3s423\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"purchase_items\": [\r\n        {\r\n            \"product_id\": 1,\r\n            \"weight_id\": 1,\r\n            \"purchase_quantity\": 200,\r\n            \"purchase_price\": \"23.25\",\r\n            \"selling_price\": \"30\"\r\n        },\r\n        {\r\n            \"product_id\": 2,\r\n            \"weight_id\": 1,\r\n            \"purchase_quantity\": 200,\r\n            \"purchase_price\": \"40.50\",\r\n            \"selling_price\": \"45\"\r\n        },\r\n        {\r\n            \"product_id\": 3,\r\n            \"weight_id\": 1,\r\n            \"purchase_quantity\": 200,\r\n            \"purchase_price\": \"55\",\r\n            \"selling_price\": \"65\"\r\n        }\r\n    ],\r\n    \"bill_number\": \"FRVWR23d3ss423E\",\r\n    \"date_of_purchase\": \"2025-12-4\",\r\n    \"payment_type\": \"cash\",\r\n    \"purchase_amount\": \"1547.20\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/purchase",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"purchase"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-wDFcdPEOfWNJ3NQjxoHb8C2d978\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Aug 2025 12:29:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Purchase added successfully\"\n}"
 						}
 					]
 				},

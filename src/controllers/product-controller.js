@@ -23,7 +23,7 @@ module.exports = {
     async getAllProducts(req, res) {
         const { page, limit, sort, column_name, search, active } = req.query;
         try {
-            const productModal = require('../models/MasterProducts');
+            const productModal = require('../models/master-products');
             let pageNumber = parseInt(page) || 1;
             let pageSize = parseInt(limit) || 10;
             let sortBy = column_name || 'product_name';

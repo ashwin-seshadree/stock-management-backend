@@ -1,8 +1,19 @@
-const PurchaseModal = require("../models/MasterPurchase");
+const PurchaseModal = require("../models/master-purchase");
+const PurchaseDetailsModal = require("../models/master-purchase-details");
 
 class PurchaseService {
-    async addBulkPurchase(data, t) {
-        return await PurchaseModal.bulkCreate(data, { transaction: t });
+    async addBulkPurchaseDetails(data, t = null) {
+        if (t)
+            return await PurchaseDetailsModal.bulkCreate(data, { transaction: t });
+
+        return await PurchaseDetailsModal.bulkCreate(data);
+    }
+
+    async addPurchaseDetails(data, t = null) {
+        if (t)
+            return await PurchaseDetailsModal.create(data, { transaction: t });
+
+        return await PurchaseDetailsModal.create(data);
     }
 
     async findPurchaseByParam(data) {
@@ -15,6 +26,13 @@ class PurchaseService {
         return await PurchaseModal.findAll({
             where: data
         });
+    }
+
+    async addPurchase(data, t = null) {
+        if (t) {
+            return await PurchaseModal.create(data, { transaction: t });
+        }
+        return await PurchaseModal.create(data);
     }
 }
 
