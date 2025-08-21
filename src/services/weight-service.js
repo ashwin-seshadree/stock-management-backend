@@ -1,4 +1,4 @@
-const weightModal = require('../models/MasterWeight.js');
+const weightModal = require('../models/master-weight-chart.js');
 
 class WeightService {
     async addWeight(weightData) {
@@ -6,7 +6,7 @@ class WeightService {
     }
 
     async findWeightById(weightId) {
-        return await weightModal.findOne({ where: { id: weightId } });
+        return await weightModal.findByPk(weightId);
     }
 
     async findWeightByName(weightName) {
@@ -14,7 +14,7 @@ class WeightService {
     }
 
     async updateWeight(weightId, weightData) {
-        return await weightModal.update(weightData, { where: { id: weightId } });
+        return await weightModal.update(weightData, { where: { weight_id: weightId } });
     }
 }
 

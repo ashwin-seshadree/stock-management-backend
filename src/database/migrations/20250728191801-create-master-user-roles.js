@@ -5,8 +5,8 @@ const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tables.master_user_roles, {
-      id: {
-        type: Sequelize.INTEGER,
+      role_id: {
+        type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true,
       },

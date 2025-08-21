@@ -5,46 +5,27 @@ const { tables } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tables.master_purchase, {
-      id: {
+      purchase_id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true,
       },
-      product_id: {
-        type: Sequelize.BIGINT,
-        allowNull: false,
-        references: {
-          model: tables.master_products,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+      bill_number: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
-      weight_id: {
-        type: Sequelize.INTEGER,
+      payment_type: {
+        type: Sequelize.ENUM('cash', 'credit_card', 'debit_card', 'net_banking'),
         allowNull: false,
-        references: {
-          model: tables.master_weight_chart,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        defaultValue: 'cash',
       },
-      quantity: {
-        type: Sequelize.BIGINT,
-        allowNull: false,
-      },
-      purchase_price: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false,
-      },
-      purchase_date: {
+      date_of_purchase: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      purchase_bill_number: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      purchase_amount: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,

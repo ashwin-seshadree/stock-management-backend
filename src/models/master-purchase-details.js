@@ -2,18 +2,26 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const MasterInventoryList = sequelize.define('MasterInventoryList', {
-    id: {
+const MasterPurchaseDetails = sequelize.define(tables.master_purchase_details, {
+    purchase_detail_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
+    },
+    purchase_id: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        references: {
+            model: tables.master_purchase,
+            key: 'purchase_id',
+        }
     },
     product_id: {
         type: DataTypes.BIGINT,
         allowNull: false,
         references: {
             model: tables.master_products,
-            key: 'id',
+            key: 'product_id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -23,19 +31,18 @@ const MasterInventoryList = sequelize.define('MasterInventoryList', {
         allowNull: false,
         references: {
             model: tables.master_weight_chart,
-            key: 'id',
+            key: 'weight_id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
     },
-    quantity: {
+    purchase_quantity: {
         type: Sequelize.BIGINT,
         allowNull: false,
     },
-    price: {
+    purchase_price: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: true,
-        defaultValue: 0.00,
+        allowNull: false,
     },
     created_at: {
         type: DataTypes.DATE,
@@ -48,13 +55,13 @@ const MasterInventoryList = sequelize.define('MasterInventoryList', {
         defaultValue: Sequelize.NOW,
     }
 }, {
-    tableName: tables.master_inventory_list,
+    tableName: tables.master_purchase_details,
     timestamps: false,
 });
 
-MasterInventoryList.prototype.toJSON = function () {
+MasterPurchaseDetails.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     return values;
 }
 
-module.exports = MasterInventoryList;
+module.exports = MasterPurchaseDetails;

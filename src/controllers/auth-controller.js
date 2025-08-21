@@ -1,12 +1,13 @@
 const { UserService } = require('../services/user-service');
-const userService = new UserService();
 const utils = require('../utils/util');
 
 module.exports = {
     async loginUser(req, res) {
         try {
             const { email_id, password } = req.body;
-            const user = await userService.findUserByEmail(email_id);
+
+            const userService = new UserService();
+            const user = await userService.findUserByEmailAndStatus(email_id);
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
@@ -17,12 +18,14 @@ module.exports = {
             }
 
             const token = utils.generateAuthToken({
-                user_id: user.id,
-                full_name: `${user.first_name} ${user.last_name}`,
-                email_id: user.email_id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                role_id: user.role_id
+                user: {
+                    user_id: user.user_id,
+                    full_name: `${user.first_name} ${user.last_name}`,
+                    email_id: user.email_id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    role_id: user.role_id
+                }
             });
             res.status(200).json({ message: 'Login successful', user, data: { token } });
         } catch (error) {

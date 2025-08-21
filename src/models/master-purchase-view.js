@@ -2,19 +2,17 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const MasterPurchaseView = sequelize.define('MasterPurchaseView', {
-    id: {
+const MasterPurchaseView = sequelize.define(tables.master_purchase_view, {
+    purchase_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
-        autoIncrement: true,
     },
-    product_name: Sequelize.STRING,
-    product_description: Sequelize.TEXT,
-    product_weight: Sequelize.STRING,
-    purchase_quantity: Sequelize.BIGINT,
-    purchase_price: Sequelize.DECIMAL(10, 2),
-    purchase_date: Sequelize.DATE,
-    purchase_bill_number: Sequelize.STRING,
+    bill_number: DataTypes.STRING,
+    payment_type: DataTypes.STRING,
+    date_of_purchase: DataTypes.DATE,
+    purchase_amount: DataTypes.DECIMAL(10, 2),
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE,
 }, {
     tableName: tables.master_purchase_view,
     timestamps: false,

@@ -1,30 +1,12 @@
-const { InventoryService } = require("../services/inventory-service");
-const inventoryService = new InventoryService();
 const paginate = require('../services/paginate-service');
 const { Op } = require('sequelize');
 
 module.exports = {
-    addInventory: async (req, res) => {
-        const itemData = req.body;
-
-        try {
-            const newItem = await inventoryService.addItem(itemData);
-            return res.status(201).json({
-                status: 'success',
-                message: 'Item added successfully',
-                data: newItem
-            });
-        } catch (error) {
-            console.error('Error adding item:', error);
-            return res.status(500).json({ message: 'Internal server error' });
-        }
-    },
-
     getAllInventoryItems: async (req, res) => {
         const { page, limit, sort, column_name, search } = req.query;
 
         try {
-            const productViewModal = require('../models/MasterInventoryListView');
+            const inventoryView = require('../models/master-inventory-list-view');
             let pageNumber = parseInt(page) || 1;
             let pageSize = parseInt(limit) || 10;
             let sortBy = column_name || 'product_name';
@@ -44,7 +26,7 @@ module.exports = {
                 ];
             }
 
-            const products = await paginate(productViewModal, options, pageNumber, pageSize);
+            const products = await paginate(inventoryView, options, pageNumber, pageSize);
 
             return res.status(200).json({
                 status: 'success',

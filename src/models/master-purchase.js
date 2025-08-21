@@ -2,24 +2,28 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const MasterProducts = sequelize.define('MasterProducts', {
-    id: {
+const MasterPurchase = sequelize.define(tables.master_purchase, {
+    purchase_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
     },
-    product_name: {
+    bill_number: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    description: {
-        type: DataTypes.TEXT,
         allowNull: true,
     },
-    is_active: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
+    payment_type: {
+        type: DataTypes.ENUM('CASH', 'CREDIT_CARD', 'DEBIT_CARD', 'NET_BANKING'),
+        allowNull: false,
+        defaultValue: 'CASH',
+    },
+    date_of_purchase: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    purchase_amount: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
     },
     created_at: {
         type: DataTypes.DATE,
@@ -32,13 +36,13 @@ const MasterProducts = sequelize.define('MasterProducts', {
         defaultValue: Sequelize.NOW,
     }
 }, {
-    tableName: tables.master_products,
+    tableName: tables.master_purchase,
     timestamps: false,
 });
 
-MasterProducts.prototype.toJSON = function () {
+MasterPurchase.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     return values;
 }
 
-module.exports = MasterProducts;
+module.exports = MasterPurchase;

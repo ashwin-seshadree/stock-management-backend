@@ -7,7 +7,7 @@ module.exports = {
     await queryInterface.sequelize.query(`
       CREATE OR REPLACE VIEW ${tables.master_inventory_list_view} AS
       SELECT 
-          mil.id,
+          mil.inventory_id,
           mp.product_name,
           mp.description AS product_description,
           mwc.weight AS product_weight,
@@ -16,9 +16,9 @@ module.exports = {
       FROM 
           ${tables.master_inventory_list} mil
       JOIN 
-          ${tables.master_products} mp ON mil.product_id = mp.id
+          ${tables.master_products} mp ON mil.product_id = mp.product_id
       JOIN 
-          ${tables.master_weight_chart} mwc ON mil.weight_id = mwc.id;
+          ${tables.master_weight_chart} mwc ON mil.weight_id = mwc.weight_id;
     `);
   },
 

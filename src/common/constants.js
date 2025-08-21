@@ -1,5 +1,5 @@
 const tables = {
-    user: 'user',
+    master_user: 'master_user',
     master_products: 'master_products',
     master_user_roles: 'master_user_roles',
     master_weight_chart: 'master_weight_chart',
@@ -10,4 +10,20 @@ const tables = {
     master_purchase_view: 'master_purchase_view',
 };
 
-module.exports = { tables }
+const payment_types = {
+    cash: 'cash',
+    credit_card: 'credit_card',
+    debit_card: 'debit_card',
+    net_banking: 'net_banking',
+}
+
+const user_roles = {
+    super_admin: 1,
+    user: 2
+}
+
+const enums = {
+    payment_types: Object.values(payment_types),
+}
+
+module.exports = { tables, payment_types, enums, user_roles }

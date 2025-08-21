@@ -1,29 +1,6 @@
-#### run to initiate a migration file
-
-`npx sequelize-cli migration:generate --name <file/tablename>`
-
-#### run to run the migration
-
-`npx sequelize-cli db:migrate --env development`
-
-#### run to undo the migration
-
-`npx sequelize-cli db:migrate:undo --env development`
-
-#### seed users to application
-
-`npx sequelize-cli db:seed:all`
-
-#### undo seed to application
-`npx sequelize-cli db:seed:undo:all`
-
-This repository is governed by a custom license for internal contributions only.
+Copyright (c) 2025 Ashwin Seshadreeswaran
 
 ![License: All Rights Reserved](https://img.shields.io/badge/License-All_Rights_Reserved-orange.svg)
-
-## License
-
-Copyright (c) 2025 Ashwin Seshadreeswaran
 
 All Rights Reserved.
 

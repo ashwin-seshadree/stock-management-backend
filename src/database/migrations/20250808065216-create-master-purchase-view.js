@@ -7,21 +7,15 @@ module.exports = {
     await queryInterface.sequelize.query(`
       CREATE OR REPLACE VIEW ${tables.master_purchase_view} AS
     SELECT 
-        mp.id,
-        mpp.product_name,
-        mpp.description AS product_description,
-        mwc.weight AS product_weight,
-        mp.quantity AS purchase_quantity,
-        mp.purchase_price,
-        mp.purchase_date,
-        mp.purchase_bill_number
+        mp.purchase_id,
+        mp.bill_number,
+        mp.payment_type,
+        mp.date_of_purchase,
+        mp.purchase_amount,
+        mp.created_at,
+        mp.updated_at
     FROM
-        ${tables.master_purchase} mp
-            JOIN
-        ${tables.master_products} mpp ON mp.product_id = mpp.id
-            JOIN
-        ${tables.master_weight_chart} mwc ON mp.weight_id = mwc.id;
-      `)
+        ${tables.master_purchase} mp`)
   },
 
   async down(queryInterface, Sequelize) {
