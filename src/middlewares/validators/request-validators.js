@@ -138,7 +138,7 @@ const PurchaseRequestValidator = {
 
     cancelPurchase: async (req, res, next) => {
         const cancelPurchaseSchema = joi.object({
-            purchase_bill_number: joi.string().max(50).required(),
+            purchase_id: joi.number().required(),
         });
 
         const { error } = cancelPurchaseSchema.validate(req.body);

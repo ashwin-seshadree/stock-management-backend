@@ -2,7 +2,7 @@ const sequelize = require('../config/database');
 const { PurchaseService } = require('../services/purchase-service');
 const { InventoryService } = require('../services/inventory-service');
 const { ProductService } = require('../services/product-service');
-const { payment_types } = require('../common/constants');
+const { payment_types, purchase_status } = require('../common/constants');
 
 module.exports = {
     addPurchase: async (req, res) => {
@@ -17,17 +17,11 @@ module.exports = {
                     payment_type: payment_types[purchaseData.payment_type],
                     date_of_purchase: purchaseData.date_of_purchase,
                     purchase_amount: purchaseData.purchase_amount,
+                    purchase_status: purchaseData.purchase_amount ? purchaseData.purchase_amount : purchase_status['pending'],
                 }, transaction);
 
                 const insertPurchaseData = await Promise.all(
                     purchaseData.purchase_items.map(async (item) => {
-                        // await purchaseService.addPurchaseDetails({
-                        //     purchase_id: master_purchase.purchase_id,
-                        //     product_id: item.product_id,
-                        //     weight_id: item.weight_id,
-                        //     purchase_quantity: item.purchase_quantity,
-                        //     purchase_price: item.purchase_price,
-                        // }, transaction)
 
                         const isProductInInventory = await inventoryService.findInventoryItemByParams({
                             product_id: item.product_id,
@@ -62,13 +56,12 @@ module.exports = {
                     })
                 );
 
-                const newPurchase = await purchaseService.addBulkPurchaseDetails(insertPurchaseData, transaction);
+                await purchaseService.addBulkPurchaseDetails(insertPurchaseData, transaction);
+            });
 
-                return res.status(201).json({
-                    status: 'success',
-                    message: 'Purchase added successfully',
-                    // data: newPurchase,
-                });
+            return res.status(201).json({
+                status: 'success',
+                message: 'Purchase added successfully',
             });
         } catch (error) {
             console.error('Error adding purchase:', error);
@@ -78,7 +71,9 @@ module.exports = {
 
     cancelPurchase: async (req, res) => {
         const { purchase_data } = req;
+        const { purchase_id } = req.body;
         let productService = new ProductService();
+        let purchaseService = new PurchaseService();
         let inventoryService = new InventoryService();
         try {
             await sequelize.transaction(async (transaction) => {
@@ -94,10 +89,11 @@ module.exports = {
                     } else {
                         await inventoryService.updateStock({
                             inventory_id: inventoryItemData.inventory_id,
-                            quantity: purchase.quantity,
+                            quantity: purchase.purchase_quantity,
                         }, transaction, true)
                     }
                 }
+                await purchaseService.updatePurchaseStatus(purchase_id, purchase_status['cancelled'], transaction);
             })
             res.status(200).json({
                 status: 'success',
