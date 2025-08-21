@@ -1,7 +1,7 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
-const { tables } = require('../../common/constants');
+const { tables, enums } = require('../../common/constants');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(tables.master_purchase, {
@@ -15,7 +15,7 @@ module.exports = {
         allowNull: true,
       },
       payment_type: {
-        type: Sequelize.ENUM('cash', 'credit_card', 'debit_card', 'net_banking'),
+        type: Sequelize.ENUM(...enums.payment_types),
         allowNull: false,
         defaultValue: 'cash',
       },
@@ -26,6 +26,11 @@ module.exports = {
       purchase_amount: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
+      },
+      purchase_status: {
+        type: Sequelize.ENUM(...enums.purchase_status),
+        allowNull: false,
+        defaultValue: 'pending',
       },
       created_at: {
         type: Sequelize.DATE,

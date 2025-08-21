@@ -89,18 +89,23 @@ const purchaseValidator = {
     },
 
     checkPurchaseAvailable: async (req, res, next) => {
-        const { purchase_bill_number } = req.body;
+        const { purchase_id } = req.body;
 
         try {
             const purchaseService = new PurchaseService();
-            const purchaseData = await purchaseService.findManyPurchaseByParam({
-                purchase_bill_number,
+            const master_purchase = await purchaseService.findPurchaseByParam({
+                purchase_id,
             });
 
-            if (!purchaseData || purchaseData.length === 0) {
+            if (!master_purchase || master_purchase.length === 0) {
                 return res.status(400).json({ message: "Purchase not found" });
             }
-            req["purchase_data"] = purchaseData;
+
+            const purchase_details = await purchaseService.findAllPurchaseDetailsByParam({
+                purchase_id,
+            })
+            
+            req["purchase_data"] = purchase_details;
             next();
         } catch (err) {
             console.error("Error in validateExistence middleware:", err);

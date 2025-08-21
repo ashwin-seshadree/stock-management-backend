@@ -17,6 +17,12 @@ const payment_types = {
     net_banking: 'net_banking',
 }
 
+const purchase_status = {
+    pending: 'pending',
+    completed: 'completed',
+    cancelled: 'cancelled',
+}
+
 const user_roles = {
     super_admin: 1,
     user: 2
@@ -24,6 +30,7 @@ const user_roles = {
 
 const enums = {
     payment_types: Object.values(payment_types),
+    purchase_status: Object.values(purchase_status),
 }
 
-module.exports = { tables, payment_types, enums, user_roles }
+module.exports = { tables, payment_types, enums, user_roles, purchase_status }
