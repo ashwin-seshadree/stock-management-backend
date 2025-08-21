@@ -2,7 +2,7 @@ const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
-const MasterUser = sequelize.define(tables.user, {
+const MasterUser = sequelize.define(tables.master_user, {
     user_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
@@ -64,7 +64,7 @@ const MasterUser = sequelize.define(tables.user, {
         defaultValue: Sequelize.NOW,
     }
 }, {
-    tableName: tables.user,
+    tableName: tables.master_user,
     timestamps: false,
 });
 

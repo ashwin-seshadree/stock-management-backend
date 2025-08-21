@@ -17,8 +17,13 @@ const payment_types = {
     net_banking: 'net_banking',
 }
 
+const user_roles = {
+    super_admin: 1,
+    user: 2
+}
+
 const enums = {
     payment_types: Object.values(payment_types),
 }
 
-module.exports = { tables, payment_types, enums }
+module.exports = { tables, payment_types, enums, user_roles }

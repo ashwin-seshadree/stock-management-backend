@@ -13,7 +13,7 @@ class InventoryService {
 
     async updateStock(data, t, is_cancellation = false) {
         const item = await InventoryModal.findOne({
-            where: { id: data.inventory_id }
+            where: { inventory_id: data.inventory_id }
         });
         let updatedQuantity;
         let updateData = {}
@@ -28,7 +28,7 @@ class InventoryService {
 
         return InventoryModal.update(
             updateData,
-            { where: { id: data.inventory_id }, transaction: t }
+            { where: { inventory_id: data.inventory_id }, transaction: t }
         );
     }
 }

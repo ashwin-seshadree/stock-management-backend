@@ -20,7 +20,7 @@ class ProductService {
     }
 
     async updateProduct(productId, productData) {
-        return await masterProductsModal.update(productData, { where: { id: productId } });
+        return await masterProductsModal.update(productData, { where: { product_id: productId } });
     }
 }
 

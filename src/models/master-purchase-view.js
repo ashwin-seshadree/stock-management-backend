@@ -3,7 +3,10 @@ const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
 const MasterPurchaseView = sequelize.define(tables.master_purchase_view, {
-    purchase_id: DataTypes.BIGINT,
+    purchase_id: {
+        type: DataTypes.BIGINT,
+        primaryKey: true,
+    },
     bill_number: DataTypes.STRING,
     payment_type: DataTypes.STRING,
     date_of_purchase: DataTypes.DATE,

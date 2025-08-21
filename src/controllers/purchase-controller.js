@@ -44,7 +44,7 @@ module.exports = {
                             await inventoryService.addItem(insertData, transaction);
                         } else {
                             await inventoryService.updateStock({
-                                inventory_id: isProductInInventory.id,
+                                inventory_id: isProductInInventory.inventory_id,
                                 quantity: item.purchase_quantity,
                                 price: item.selling_price,
                             }, transaction);
@@ -93,7 +93,7 @@ module.exports = {
                         throw new Error(message);
                     } else {
                         await inventoryService.updateStock({
-                            inventory_id: inventoryItemData.id,
+                            inventory_id: inventoryItemData.inventory_id,
                             quantity: purchase.quantity,
                         }, transaction, true)
                     }

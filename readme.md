@@ -10,6 +10,13 @@
 
 `npx sequelize-cli db:migrate:undo --env development`
 
+#### seed users to application
+
+`npx sequelize-cli db:seed:all`
+
+#### undo seed to application
+`npx sequelize-cli db:seed:undo:all`
+
 This repository is governed by a custom license for internal contributions only.
 
 ![License: All Rights Reserved](https://img.shields.io/badge/License-All_Rights_Reserved-orange.svg)

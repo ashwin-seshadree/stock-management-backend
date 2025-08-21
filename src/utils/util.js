@@ -13,9 +13,13 @@ module.exports = {
     generateAuthToken: (data) => {
         const jwtSecret = process.env.JWT_SECRET
         const jwtExpiration = process.env.JWT_EXPIRATION
+        const jwtIssuer = process.env.JWT_ISSUER
+        const jwtAlgorithm = process.env.JWT_ALGORITHM
 
         return jwt.sign(data, jwtSecret, {
-            expiresIn: jwtExpiration
+            expiresIn: jwtExpiration,
+            issuer: jwtIssuer,
+            algorithm: jwtAlgorithm
         });
     },
 

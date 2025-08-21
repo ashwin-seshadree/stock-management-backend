@@ -12,10 +12,10 @@ module.exports = {
         const token = authorization.split(' ')[1];
         try {
             const decoded = utils.verifyAuthToken(token);
-            req.user = decoded;
+            req['user'] = decoded['user'];
             next();
         } catch (error) {
-            return res.status(401).json({ error: 'Invalid token', message: 'Invalid token' });
+            return res.status(401).json({ error: 'Unauthorized', message: 'Invalid token' });
         }
     }
 }

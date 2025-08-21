@@ -3,7 +3,10 @@ const sequelize = require('../config/database');
 const { tables } = require('../common/constants');
 
 const MasterInventoryListView = sequelize.define(tables.master_inventory_list_view, {
-    inventory_id: DataTypes.BIGINT,
+    inventory_id: {
+        type: DataTypes.BIGINT,
+        primaryKey: true,
+    },
     product_name: DataTypes.STRING,
     product_description: DataTypes.TEXT,
     product_weight: DataTypes.STRING,
