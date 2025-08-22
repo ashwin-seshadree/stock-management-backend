@@ -59,6 +59,22 @@ const ProductRequestValidator = {
             });
         }
         next();
+    },
+    validateUpdateProduct: async (req, res, next) => {
+
+        const updateProductSchema = joi.object({
+            product_name: joi.string().min(1).max(100).optional(),
+            description: joi.string().allow('', null).optional().max(500),
+        });
+
+        const { error } = updateProductSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 'error',
+                message: error.details[0].message,
+            });
+        }
+        next();
     }
 }
 
