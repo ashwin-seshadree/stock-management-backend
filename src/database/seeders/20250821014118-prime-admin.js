@@ -3,6 +3,10 @@ const { hashPassword } = require('../../utils/util');
 const { tables, user_roles } = require('../../common/constants');
 require('dotenv').config({ path: '.env.seeder' });
 
+if (!process.env.PRIME_ADMIN_EMAIL) {
+  throw new Error("Please set the PRIME_ADMIN_EMAIL environment variable in .env.seeder file.");
+}
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
