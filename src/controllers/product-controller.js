@@ -65,5 +65,48 @@ module.exports = {
             console.error('Error fetching products:', error);
             return res.status(500).json({ message: 'Internal server error' });
         }
+    },
+
+    async updateProduct(req, res) {
+        const productId = req.params.id;
+        const updateData = req.body;
+
+        try {
+            const updatedProduct = await productService.updateProduct(productId, updateData);
+            if (!updatedProduct) {
+                return res.status(404).json({
+                    status: 'error',
+                    message: 'Product not found',
+                });
+            }
+            return res.status(200).json({
+                status: 'success',
+                message: 'Product updated successfully',
+            });
+        } catch (error) {
+            console.error('Error updating product:', error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    },
+
+    async deleteProduct(req, res) {
+        const productId = req.params.id;
+
+        try {
+            const deletedProduct = await productService.updateProduct(productId, { is_active: false });
+            if (!deletedProduct) {
+                return res.status(404).json({
+                    status: 'error',
+                    message: 'Product not found',
+                });
+            }
+            return res.status(200).json({
+                status: 'success',
+                message: 'Product deleted successfully',
+            });
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
     }
 }   

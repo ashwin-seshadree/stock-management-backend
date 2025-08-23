@@ -6,5 +6,7 @@ const { productValidator } = require('../../middlewares/existence/validateExiste
 
 app.post("/", ProductRequestValidator['validateCreateProduct'], productValidator['checkProductExists'], productController['createProduct']);
 app.get("/", productController['getAllProducts']);
+app.put("/:id", ProductRequestValidator['validateUpdateProduct'], productController['updateProduct']);
+app.delete("/:id", productController['deleteProduct']);
 
 module.exports = app;
